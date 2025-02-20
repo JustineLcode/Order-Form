@@ -74,12 +74,13 @@
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
 
-    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pacemaker and defibrillators.</footer>
+    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in pacemaker and defibrillators. <br><br></footer>
 
     <div class="order-summary">
-        <?php echo "Delivery adress: $adress" . "</br></br>"; ?>
+        <h1>Order summary</h1>
+        <?php echo "<h5>Delivery adress:</h5>" . $adress . "</br></br>"; ?>
         
-        <?php echo "<ul>";
+        <?php echo "<h5>Products:</h5>" . "<ul>";
         foreach ($_POST["products"] as $index => $value) {
             echo "<li>" . $products[$index]["name"] . "</br>" . $products[$index]["price"] . " €" . "</li>";
             $totalValue += $products[$index]["price"];
@@ -93,6 +94,17 @@
     footer {
         text-align: center;
     }
+    .order-summary{
+        text-align: center;
+        margin-top: 50px;
+    }
+    li {
+    list-style-position: inside; 
+    }
+    h1{
+        margin-bottom: 20px;
+    }
+
 </style>
 </body>
 </html>
