@@ -17,20 +17,16 @@ session_start();
     var_dump($_POST);
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
-} */
-/* whatIsHappening(); */
+}
+whatIsHappening(); */ 
 
 // Initialisations des variables pour éviter les erreurs lorsque le form n'est pas rempli
 $street = '';
 $street_number = '';
 $zipcode = '';
 $city = '';
-$adress = ''; 
 $products = [];
 $totalValue = 0;
-
-
-
 
 // TODO: provide some products (you may overwrite the example)
 $products = [
@@ -59,43 +55,26 @@ function test_input($data) {
     $data = stripslashes($data); // Remove backslashes 
     $data = htmlspecialchars($data); // Converts special characters to HTML entities
     return $data;
-  };
-
-  // variable email 
-  if(isset($_POST["email"])) {
-  $email = test_input($_POST["email"]);
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $emailErr = "Invalid email format";
-  };
-}
+    };
 
 // variables des inputs pour l'adresse:
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["street"])) {
-      $street = "Street is required";
-    } else {
+    if ($_POST["street"]) {
         $street = test_input($_POST["street"]);
     }
 
-    if (empty($_POST["streetnumber"])){
-        $street_number = "Sreetnumber is required";
-    } else {
+    if ($_POST["streetnumber"]){
         $street_number = test_input($_POST["streetnumber"]);
     }
 
-    if (empty($_POST["city"])) {
-        $city = "City is required";
-    } else {
+    if ($_POST["city"]) {
         $city = test_input($_POST["city"]);
     }
 
-    if (empty($_POST["zipcode"]) || !is_numeric($_POST["zipcode"])) {
-        $zipcode = "Zipcode is required and must be a number";
-    } else {
+    if ($_POST["zipcode"]){
         $zipcode = test_input($_POST["zipcode"]);
     }
-};
-
+}; 
 
 // adresse de livraison:
 $adress = $street . " " . $street_number . ", " . $zipcode . " " . $city;
