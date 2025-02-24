@@ -27,7 +27,7 @@
         </ul>
     </nav>
     */ ?>
-    <form method="POST">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
@@ -81,10 +81,12 @@
         <?php echo "<h5>Delivery adress:</h5>" . $adress . "</br></br>"; ?>
         
         <?php echo "<h5>Products:</h5>" . "<ul>";
+        if (isset($_POST["products"])){
         foreach ($_POST["products"] as $index => $value) {
             echo "<li>" . $products[$index]["name"] . "</br>" . $products[$index]["price"] . " €" . "</li>";
             $totalValue += $products[$index]["price"];
         }
+    }
         echo "</ul>";
         ?>
     </div>
@@ -95,6 +97,7 @@
         text-align: center;
     }
     .order-summary{
+        /* visibility: hidden; */
         text-align: center;
         margin-top: 50px;
     }
